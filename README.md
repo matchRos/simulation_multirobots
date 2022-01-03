@@ -6,7 +6,7 @@ git clone https://github.com/Grossbier/simulation_multirobots.git
 ```
 ### Install dependencies
 The dependencies can be installed as following link:
-https://github.com/justagist/panda_simulator#readme #(The Franka ROS Interface, franka_panda_description, orocos-kinematics-dynamics have been intalled in the package.)
+https://github.com/justagist/panda_simulator#readme #(The Franka ROS Interface, franka_panda_description, orocos-kinematics-dynamics have been installed in the package.)
 
 ### Build packages
 ```
