@@ -1,7 +1,4 @@
-Helper Tools
-## 1. Repository overview
-This package is the simulation of multi panda manipulators.
-# 2. Installation
+# 1. Installation
 ### Clone package
 ```
 cd ~
@@ -17,8 +14,8 @@ cd ~/simulation_multirobots
 catkin build
 ```
 
-## 3. Usage
-1.The simulation of multi manipulators can be started by:
+## 2. Usage
+1.The simulation of multi manipulators in gazebo can be started by:
 ```
 roslaunch simu multi_panda.launch
 ```
@@ -26,7 +23,7 @@ roslaunch simu multi_panda.launch
 ```
 roslaunch simu multi_demo_task_control.launch
 ```
-3.In the package there is a suitable object(rectcirc2) for grasping and add it to the path in Gazebo.
+3.In the package there is a object(rectcirc2) for grasping and add it to the path in Gazebo.
 
 4.We could grasp the object by publishing the following topic:
 ```
