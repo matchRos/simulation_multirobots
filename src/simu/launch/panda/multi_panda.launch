@@ -1,0 +1,85 @@
+<launch>
+    <!--The name of multi panda robot-->
+    <arg name="panda1_name" default="panda1"/>
+    <arg name="panda2_name" default="panda2"/>  
+    <arg name="panda3_name" default="panda3"/>
+    <arg name="panda4_name" default="panda4"/>
+    <!--initial_pose of each manipulator-->
+    <arg name="panda1_initial_pose" default="[0.00,-0.785,0.0,-2.356,0.0,1.57,-0.785]"/>
+    <arg name="panda2_initial_pose" default="[0.00,-0.785,0.0,-2.356,0.0,1.57,-0.785]"/>
+    <arg name="panda3_initial_pose" default="[0.000,-0.785,0.0,-2.356,0.0,1.57,-0.785]"/>
+    <arg name="panda4_initial_pose" default="[0.000,-0.785,0.0,-2.356,0.0,1.57,-0.785]"/>
+    <!--initial_pose(translation and rotation) of each base-->
+    <!--arg with suffix tf for static_transform_publisher node, args without suffix "tf" fit for urdf files-->
+    <arg name="panda1_base_trans" default="'0 0 0'"/>
+    <arg name="panda2_base_trans" default="'0 1 0'"/>
+    <arg name="panda3_base_trans" default="'1.5 0 0'"/>
+    <arg name="panda4_base_trans" default="'1.5 1 0'"/>
+    <arg name="panda1_base_trans_tf" default="0 0 0"/>
+    <arg name="panda2_base_trans_tf" default="0 1 0"/>
+    <arg name="panda3_base_trans_tf" default="1.5 0 0"/>
+    <arg name="panda4_base_trans_tf" default="1.5 1 0"/>
+
+    <arg name="panda1_base_rot" default="'0 0 0'"/>
+    <arg name="panda2_base_rot" default="'0 0 0'"/>
+    <arg name="panda3_base_rot" default="'0 0 3.14'"/>
+    <arg name="panda4_base_rot" default="'0 0 3.14'"/>
+    <arg name="panda1_base_rot_tf" default="0 0 0 1"/>
+    <arg name="panda2_base_rot_tf" default="0 0 0 1"/>
+    <arg name="panda3_base_rot_tf" default="0 0 1 0"/>
+    <arg name="panda4_base_rot_tf" default="0 0 1 0"/>
+    
+    
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="load_gazebo" default="true"/>
+    <arg unless="$(arg debug)" name="launch_prefix" value="" />
+    <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+
+    <include if="$(arg load_gazebo)" file="$(find simu)/launch/panda/gazebo_world.launch"/>
+
+    <rosparam command="load" file="$(find panda_gazebo)/config/robot_details.yaml"/>
+    
+    <group ns="$(arg panda1_name)">
+        <include file="$(find simu)/launch/panda/single_panda.launch">
+            <arg name="panda_name" value="$(arg panda1_name)"/>
+            <arg name="initial_pose" value="$(arg panda1_initial_pose)"/>
+            <arg name="panda_xyz" value="$(arg panda1_base_trans)"/>
+            <arg name="panda_xyz_tf" value="$(arg panda1_base_trans_tf)"/>
+        </include>
+    </group>
+
+    <group ns="$(arg panda2_name)">
+        <include file="$(find simu)/launch/panda/single_panda.launch">
+            <arg name="panda_name" value="$(arg panda2_name)"/>
+            <arg name="initial_pose" value="$(arg panda2_initial_pose)"/>
+            <arg name="panda_xyz" value="$(arg panda2_base_trans)"/>
+            <arg name="panda_xyz_tf" value="$(arg panda2_base_trans_tf)"/>
+        </include>
+    </group>
+        
+    <group ns="$(arg panda3_name)">
+        <include file="$(find simu)/launch/panda/single_panda.launch">
+            <arg name="panda_name" value="$(arg panda3_name)"/>
+            <arg name="initial_pose" value="$(arg panda3_initial_pose)"/>
+            <arg name="panda_xyz" value="$(arg panda3_base_trans)"/>
+            <arg name="panda_xyz_tf" value="$(arg panda3_base_trans_tf)"/>
+            <arg name="panda_rpy" value="$(arg panda3_base_rot)"/>
+            <arg name="panda_rpy_tf" value="$(arg panda3_base_rot_tf)"/>
+        </include>
+    </group>
+
+    <group ns="$(arg panda4_name)">
+        <include file="$(find simu)/launch/panda/single_panda.launch">
+            <arg name="panda_name" value="$(arg panda4_name)"/>
+            <arg name="initial_pose" value="$(arg panda4_initial_pose)"/>
+            <arg name="panda_xyz" value="$(arg panda4_base_trans)"/>
+            <arg name="panda_xyz_tf" value="$(arg panda4_base_trans_tf)"/>
+            <arg name="panda_rpy" value="$(arg panda4_base_rot)"/>
+            <arg name="panda_rpy_tf" value="$(arg panda4_base_rot_tf)"/>
+        </include>
+    </group>
+
+
+</launch>

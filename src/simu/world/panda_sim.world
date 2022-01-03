@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://rectcirc2</uri>
+      <pose frame=''>0.7464 0.4875 0.401 0 0 -1.556454</pose>
+    </include>
+
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+    </physics>
+    
+    <gravity>
+      0.0 0.0 0.0
+    </gravity>
+
+    <gui fullscreen='0'>
+    </gui>
+
+  </world>
+</sdf>

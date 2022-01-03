@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+    <group ns="panda1">
+        <node pkg="simu" type="gripper_goal.py" name="grippe_goal"/>
+    </group>   
+   
+    <group ns="panda2">
+        <node pkg="simu" type="gripper_goal.py" name="gripper_goal"/>
+    </group>
+
+    <group ns="panda3">
+        <node pkg="simu" type="gripper_goal.py" name="gripper_goal"/>
+    </group>
+
+    <group ns="panda4">
+        <node pkg="simu" type="gripper_goal.py" name="gripper_goal"/>
+    </group>
+</launch>

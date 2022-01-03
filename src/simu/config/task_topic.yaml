@@ -1,0 +1,4 @@
+tip_state_topic: panda_simulator/custom_franka_state_controller/tip_state
+robot_state_topic: panda_simulator/custom_franka_state_controller/robot_state
+joint_command_topic: panda_simulator/motion_controller/arm/joint_commands
+end_target_topic: panda_simulator/end_target

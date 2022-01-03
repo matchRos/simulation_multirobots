@@ -1,0 +1,50 @@
+<launch>
+    <!--mir name-->
+    <arg name="mir1_name" default="mir1"/>
+    <arg name="mir2_name" default="mir2"/>
+    <arg name="mir3_name" default="mir3"/>
+    <arg name="mir4_name" default="mir4"/>
+    <!--panda name-->
+    <arg name="panda1_name" default="panda1"/>
+    <arg name="panda2_name" default="panda2"/>
+    <arg name="panda3_name" default="panda3"/>
+    <arg name="panda4_name" default="panda4"/>
+    <!--initial_pose of each manipulator-->
+    <arg name="panda1_initial_pose" default="[0.00,-0.785,0.0,-2.356,0.0,1.57,0.785]"/>
+    <arg name="panda2_initial_pose" default="[0.00,-0.785,0.0,-2.356,0.0,1.57,-0.785]"/>
+    <arg name="panda3_initial_pose" default="[0.000,-0.785,0.0,-2.356,0.0,1.57,0.785]"/>
+    <arg name="panda4_initial_pose" default="[0.000,-0.785,0.0,-2.356,0.0,1.57,0.785]"/>
+
+    
+    
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="load_gazebo" default="true"/>
+    <arg unless="$(arg debug)" name="launch_prefix" value="" />
+    <arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+
+    <include if="$(arg load_gazebo)" file="$(find simu)/launch/miranda/gazebo_world.launch"/>
+
+    <rosparam command="load" file="$(find panda_gazebo)/config/robot_details.yaml"/>
+
+    <group ns="mir1">
+        <include file="$(find simu)/launch/miranda/miranda_sim.launch">
+            <arg name="model_name" value="$(arg mir1_name)"/>
+            <arg name="mir_name" value="$(arg mir1_name)"/>
+            <arg name="panda_name" value="$(arg panda1_name)"/>
+            <arg name="tf_prefix" value="$(arg mir1_name)"/>
+            <arg name="initial_pose" value="$(arg panda1_initial_pose)"/>
+            <arg name="robot_x"   value="0.0" />
+            <arg name="robot_y"   value="0.0" />
+            <arg name="robot_yaw" value="0.0" />
+        </include>
+    </group>
+    
+    <!-- Run Rviz -->
+    <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false" 
+         args="-d $(find simu)/rviz/multi_miranda.rviz" output="screen">
+    </node>
+
+
+</launch>

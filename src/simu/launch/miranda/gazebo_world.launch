@@ -1,0 +1,29 @@
+<launch>
+    
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="load_gazebo" default="true"/>
+    <arg name="world_name" default="big_square"/>
+    <arg name="use_map_sim" default="true"/>
+    <arg name="verbose" default="false"/>
+
+    <!-- We resume the logic in empty_world.launch, changing the name of the world to be launched -->
+    <include if="$(arg load_gazebo)" file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(find match_gazebo)/worlds/$(arg world_name).world"/>
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="verbose" value="$(arg verbose)"/>
+      <arg name="gui" value="$(arg gui)" />
+      <arg name="paused" value="$(arg paused)"/>
+      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+      <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <node if="$(arg use_map_sim)" name="static_map_server" pkg="map_server" type="map_server" args="$(find match_gazebo)/maps/$(arg world_name).yaml" output="screen">
+      <param name="frame_id" type="string" value="/map"/>
+    </node>
+
+</launch>
+
