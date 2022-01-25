@@ -30,7 +30,7 @@
 
     <rosparam command="load" file="$(find miranda_launch_sim)/config/robot_details.yaml"/>
     
-    <param name="/$(arg panda_name)/robot_description" command="$(find xacro)/xacro --inorder $(find franka_panda_description)/robots/new_panda_arm_hand.urdf.xacro load_gripper:=$(arg load_gripper) load_gazebo:=$(arg load_gazebo)"/>
+    <param name="/$(arg panda_name)/robot_description" command="$(find xacro)/xacro --inorder $(find custom_urdfs)/new_panda_arm_hand.urdf.xacro load_gripper:=$(arg load_gripper) load_gazebo:=$(arg load_gazebo)"/>
     <param name="robot_description" command="$(find xacro)/xacro $(arg robot_urdf_path) robot_namespace:=$(arg mir_name) tf_prefix:=$(arg tf_prefix) panda_namespace:=$(arg panda_name) load_gripper:=$(arg load_gripper) load_gazebo:=$(arg load_gazebo)" />    
     
     <param name="/arm/root_name" value="panda_link0" />
