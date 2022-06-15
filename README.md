@@ -4,7 +4,7 @@
 cd ~
 git clone https://github.com/Grossbier/simulation_multirobots.git
 ```
-Also clone and build https://github.com/matchRos/Match_Mobile_Robotics
+Also clone and build [https://github.com/matchRos/Match_Mobile_Robotics](https://github.com/ROSmatch/Match_Mobile_Robotics)
 
 ### Install dependencies
 The dependencies can be installed as following link:
